@@ -54,10 +54,8 @@ template: page.html
   <tbody>
     <tr class="postcontainer">
       <td>
-        <a href="https://github.com/protimroy/basis" class="firstpost">
-          <span class="post_title">Data Engineering</span>
-          <span class="post_text"><br><br>Setting up dagster for data ingestion.</span>
-        </a>
+        <span class="post_title">Data Engineering</span>
+        <span class="post_text"><br><br><a href="https://github.com/protimroy/engineering-log/dagster">Setting up dagster for data ingestion.</a></span>
       </td>
     </tr>
   </tbody>
