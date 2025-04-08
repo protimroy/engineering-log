@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <title>{{title}}</title>
+    <link rel="stylesheet" lang="text/css" href="{{site_root}}/bulma.css">
+    <!-- include another bulma.css stylesheet that is for the user to customize -->
+    <link rel="stylesheet" lang="text/css" href="{{site_root}}/bulma-custom.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>a[href^="https://"]::after {
+        content: " [*]";
+      }
+      .navbar-menu {
+        box-shadow: none;
+      }</style>
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <nav class="navbar mb-4" role="navigation">
+          <div class="navbar-menu is-active">
+            <div class="navbar-start">
+              <a href="{{site_root}}/" class="navbar-item">Back home</a>
+            </div>
+            <div class="navbar-end">
+
+            </div>
+          </div>
+        </nav>
+      </div>
+      <div class="container" id="content">
+        <h1 class="title">
+          <span class="icon-text">{{& lucide.apple}}
+            <span>{{title}}</span></span>
+        </h1>
+        {{& meta }}
+        
+        <p class="subtitle" style="font-size:95%;" >{{ description }}</p>
+        <section class="content" style="font-size:75%;" >
+          {{& content}}
+        </section>
+      </div>
+    </section>
+  </body>
+</html>
