@@ -55,7 +55,7 @@ template: page.html
     <tr class="postcontainer">
       <td>
         <span class="post_title">Data Engineering</span>
-        <span class="post_text"><br><br><a href="https://github.com/protimroy/engineering-log/dagster">Setting up dagster for data ingestion.</a></span>
+        <span class="post_text"><br><br><a href="https://www.protimroy.com/engineering-log/dagster">Setting up dagster for data ingestion.</a></span>
       </td>
     </tr>
   </tbody>
