@@ -56,7 +56,7 @@ template: page.html
       <td>
         <a href="https://github.com/protimroy/basis" class="firstpost">
           <span class="post_title">Data Engineering</span>
-          <span class="post_text"><br><br>Setting up dagster for data ingestion and MLOps.</span>
+          <span class="post_text"><br><br>Setting up dagster for data ingestion.</span>
         </a>
       </td>
     </tr>
