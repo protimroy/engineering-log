@@ -15,4 +15,4 @@ In this guide, I’ll walk you through how I deployed [Dagster](https://dagster.
 - systemd for managing services
 - Tailscale for secure remote access
 
-By the end, you'll have a production-ready Dagster instance that you can access from anywhere securely. 💪
+By the end, you'll have a production-ready Dagster instance that you can access from anywhere securely.
