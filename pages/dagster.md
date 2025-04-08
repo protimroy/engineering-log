@@ -29,7 +29,6 @@ By the end, you'll have a production-ready Dagster instance that you can access 
 
 ## 1️⃣ Install Python 3.12.9 from Source
 
-```bash
 sudo apt update
 sudo apt install -y build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev \
   libssl-dev libreadline-dev libffi-dev libsqlite3-dev wget curl libbz2-dev
@@ -58,7 +57,6 @@ dagster project from-example --example getting_started_etl_tutorial --name examp
 pip install -e ~/Documents/dagster_workspace/example_etl
 
 ## 5️⃣ Setup DAGSTER_HOME
-```bash
+
 mkdir -p ~/.dagster
 vim ~/.dagster/dagster.yaml
-```
