@@ -6,7 +6,7 @@ allow_html: true
 template: page.html
 ---
 
-# 🚀 Deploying Dagster on Ubuntu with Python 3.12.9, Systemd, and Tailscale
+#  Deploying Dagster on Ubuntu with Python 3.12.9, Systemd, and Tailscale
 
 In this guide, I’ll walk you through how I deployed [Dagster](https://dagster.io/), a powerful data orchestration platform, on an Ubuntu server using:
 
@@ -19,7 +19,7 @@ By the end, you'll have a production-ready Dagster instance that you can access 
 
 ---
 
-## ✅ Prerequisites
+## Prerequisites
 
 - Ubuntu 22.04+ (I used 24.04)
 - [Tailscale](https://tailscale.com) account (for secure remote access)
@@ -27,7 +27,7 @@ By the end, you'll have a production-ready Dagster instance that you can access 
 
 ---
 
-## 1️⃣ Install Python 3.12.9 from Source
+## 1 Install Python 3.12.9 from Source
 
 sudo apt update
 sudo apt install -y build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev \
@@ -41,22 +41,22 @@ cd Python-3.12.9
 make -j$(nproc)
 sudo make altinstall
 
-## 2️⃣ Create a Virtual Environment
+## 2 Create a Virtual Environment
 
 python3.12 -m venv ~/venv312
 source ~/venv312/bin/activate
 
-## 3️⃣ Install Dagster
+## 3 Install Dagster
 pip install dagster dagster-webserver dagster-daemon
 
-## 4️⃣ Setup example project in Dagster workspace
+## 4 Setup example project in Dagster workspace
 mkdir ~/Documents/dagster_workspace
 dagster project from-example --example getting_started_etl_tutorial --name example_etl
 
 ### install project dependencies
 pip install -e ~/Documents/dagster_workspace/example_etl
 
-## 5️⃣ Setup DAGSTER_HOME
+## 5 Setup DAGSTER_HOME
 
 mkdir -p ~/.dagster
 vim ~/.dagster/dagster.yaml
