@@ -15,13 +15,13 @@ template: page.html
 
 By the end, you'll have a production-ready Dagster instance that you can access from anywhere securely.
 
-###### Prerequisites
+###### Pre-requisites
 
 - Ubuntu 22.04+ (I used 24.04)
 - [Tailscale](https://tailscale.com) account (for secure remote access)
 - Basic familiarity with Linux, systemd, and Python virtual environments
 
-###### Install Python 3.12.9 from Source
+###### Install Python 3.12.9 from source
 
 ```bash
 sudo apt update
@@ -37,14 +37,14 @@ make -j$(nproc)
 sudo make altinstall
 ```
 
-###### Create a Virtual Environment
+###### Create a virtual environment
 ```bash
 python3.12 -m venv ~/venv312
 source ~/venv312/bin/activate
 mkdir ~/Documents/dagster_workspace
 ```
 
-###### Install Dagster and Example Project
+###### Install Dagster, example project, and dependencies
 
 ```bash
 pip install dagster dagster-webserver dagster-daemon
@@ -89,9 +89,133 @@ run_launcher:
   class: DefaultRunLauncher
 ```
 
-Then add this to your ~/.bashrc:
+Then add this to your ```~/.bashrc```:
+
 ```bash
 export DAGSTER_HOME=/home/protim/.dagster
 source ~/.bashrc
 ```
 
+###### Configure systemd services
+
+```bash
+sudo vim /etc/systemd/system/dagster-daemon.service
+```
+```ini
+[Unit]
+Description=Dagster Webserver
+After=network.target
+
+[Service]
+Type=simple
+User=protim
+WorkingDirectory=/home/protim/Documents/dagster_workspace
+ExecStart=/home/protim/venv312/bin/dagster-webserver
+Restart=always
+RestartSec=10
+Environment=PATH=/home/protim/venv312/bin:/usr/bin:/bin
+Environment=PYTHONUNBUFFERED=1
+Environment=DAGSTER_HOME=/home/protim/.dagster
+
+[Install]
+WantedBy=multi-user.target
+```
+
+```bash
+sudo vim /etc/systemd/system/dagster-daemon.service
+```
+```ini
+
+[Unit]
+Description=Dagster Daemon
+After=network.target
+
+[Service]
+Type=simple
+User=protim
+WorkingDirectory=/home/protim/Documents/dagster_workspace
+ExecStart=/home/protim/venv312/bin/dagster-daemon run
+Restart=always
+RestartSec=10
+EnvironmentFile=/etc/dagster-daemon.env
+Environment=PATH=/home/protim/venv312/bin:/usr/bin:/bin
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target
+```
+
+```bash
+sudo vim /etc/dagster-daemon.env
+```
+```bash
+DAGSTER_HOME=/home/protim/.dagster
+```
+Then reload systemd and enable both services:
+
+```bash
+sudo systemctl daemon-reexec
+sudo systemctl daemon-reload
+sudo systemctl enable dagster-webserver dagster-daemon
+sudo systemctl start dagster-webserver dagster-daemon
+```
+
+###### Create your Dagster workspace
+```bash
+sudo vim ~/Documents/dagster_workspace/workspace.yaml
+```
+```yaml
+load_from:
+  - python_package:
+      package_name: quickstart_etl
+      working_directory: example_etl
+      location_name: quickstart_etl
+```
+
+Modify the __init__.py file
+
+```bash
+sudo vim ~/Documents/dagster_workspace/example_etl/__init__.py
+```
+```python
+from .definitions import defs
+```
+This allows Dagster to find the ```Definitions``` object when loading the package.
+
+
+###### Enable secure remote access via Tailscale
+```bash
+curl -fsSL https://tailscale.com/install.sh | sh
+sudo tailscale up
+```
+
+Then open the Dagster UI from your browser:
+```
+http://<tailscale-ip>:3000
+```
+
+
+
+###### Conclusion
+
+You've now deployed Dagster with:
+ - A clean Python 3.12.9 venv
+ - Fully-managed daemon and webserver
+ - Secure remote access via Tailscale
+ - A functioning example ETL pipeline with schedules and assets
+
+This setup is a great starting point for building and deploying your data pipelines. You can now extend this to include more complex workflows, integrate with other data sources, and scale as needed.
+
+Dagster sensors and schedules can be added to trigger jobs based on external events or time intervals, making it a powerful tool for data orchestration.
+
+When pipelines goes down, sensors should be able to detect the failure and trigger alerts or retries. This can be done using Dagster's built-in alerting mechanisms without the need of using external tools like Grafana.
+
+Dagster can also monitor databases, data lakes, and other data sources to ensure data quality and integrity. This is crucial for maintaining the reliability of your data pipelines.
+
+
+Author: [Protim Roy](https://www.protimroy.com)
+Date: 2025-04-08
+Tags: dagster, python, data engineering, data orchestration, ubuntu, systemd, tailscale
+
+
+![dagster](https://github.com/protimroy/engineering-log/pages/images/dagster.png)
