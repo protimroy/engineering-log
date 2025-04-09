@@ -111,31 +111,31 @@ vim ~/.dagster/dagster.yaml
   module: dagster._core.storage.root
   class: LocalArtifactStorage
   config:
-    base_dir: /home/protim/.dagster
+    base_dir: /home/user/.dagster
 
 run_storage:
   module: dagster._core.storage.runs
   class: SqliteRunStorage
   config:
-    base_dir: /home/protim/.dagster
+    base_dir: /home/user/.dagster
 
 event_log_storage:
   module: dagster._core.storage.event_log
   class: SqliteEventLogStorage
   config:
-    base_dir: /home/protim/.dagster
+    base_dir: /home/user/.dagster
 
 schedule_storage:
   module: dagster._core.storage.schedules
   class: SqliteScheduleStorage
   config:
-    base_dir: /home/protim/.dagster
+    base_dir: /home/user/.dagster
 
 run_launcher:
   module: dagster._core.launcher.default_run_launcher
   class: DefaultRunLauncher
 </code></pre><p>
-Then add this to your <code>~/.bashrc</code>:</p><pre><code>export DAGSTER_HOME=/home/protim/.dagster
+Then add this to your <code>~/.bashrc</code>:</p><pre><code>export DAGSTER_HOME=/home/user/.dagster
 source ~/.bashrc
 </code></pre><h6>
 Configure systemd services</h6>
@@ -146,14 +146,14 @@ After=network.target
 
 [Service]
 Type=simple
-User=protim
-WorkingDirectory=/home/protim/Documents/dagster_workspace
-ExecStart=/home/protim/venv312/bin/dagster-webserver
+User=user
+WorkingDirectory=/home/user/Documents/dagster_workspace
+ExecStart=/home/user/venv312/bin/dagster-webserver
 Restart=always
 RestartSec=10
-Environment=PATH=/home/protim/venv312/bin:/usr/bin:/bin
+Environment=PATH=/home/user/venv312/bin:/usr/bin:/bin
 Environment=PYTHONUNBUFFERED=1
-Environment=DAGSTER_HOME=/home/protim/.dagster
+Environment=DAGSTER_HOME=/home/user/.dagster
 
 [Install]
 WantedBy=multi-user.target
@@ -165,19 +165,19 @@ After=network.target
 
 [Service]
 Type=simple
-User=protim
-WorkingDirectory=/home/protim/Documents/dagster_workspace
-ExecStart=/home/protim/venv312/bin/dagster-daemon run
+User=user
+WorkingDirectory=/home/user/Documents/dagster_workspace
+ExecStart=/home/user/venv312/bin/dagster-daemon run
 Restart=always
 RestartSec=10
 EnvironmentFile=/etc/dagster-daemon.env
-Environment=PATH=/home/protim/venv312/bin:/usr/bin:/bin
+Environment=PATH=/home/user/venv312/bin:/usr/bin:/bin
 Environment=PYTHONUNBUFFERED=1
 
 [Install]
 WantedBy=multi-user.target
 </code></pre><pre><code>sudo vim /etc/dagster-daemon.env
-</code></pre><pre><code>DAGSTER_HOME=/home/protim/.dagster
+</code></pre><pre><code>DAGSTER_HOME=/home/user/.dagster
 </code></pre><p>
 Then reload systemd and enable both services:</p><pre><code>sudo systemctl daemon-reexec
 sudo systemctl daemon-reload
