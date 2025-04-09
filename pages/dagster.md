@@ -48,9 +48,7 @@ mkdir ~/Documents/dagster_workspace
 
 ```bash
 pip install dagster dagster-webserver dagster-daemon
-
 dagster project from-example --example getting_started_etl_tutorial --name example_etl
-
 pip install -e ~/Documents/dagster_workspace/example_etl
 ```
 
