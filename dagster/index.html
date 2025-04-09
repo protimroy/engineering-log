@@ -194,7 +194,7 @@ Create your Dagster workspace</h6>
       working_directory: example_etl
       location_name: quickstart_etl
 </code></pre><p>
-Modify the <strong>init</strong>.py file</p><pre><code>sudo vim ~/Documents/dagster_workspace/example_etl/__init__.py
+Modify the <code>__init__.py</code> file</p><pre><code>sudo vim ~/Documents/dagster_workspace/example_etl/__init__.py
 </code></pre><pre><code>from .definitions import defs
 </code></pre><p>
 This allows Dagster to find the <code>Definitions</code> object when loading the package.</p><h6>
@@ -213,14 +213,8 @@ Fully-managed daemon and webserver</li><li>
 Secure remote access via Tailscale</li><li>
 A functioning example ETL pipeline with schedules and assets</li></ul>
 <p>
-This setup is a great starting point for building and deploying your data pipelines. You can now extend this to include more complex workflows, integrate with other data sources, and scale as needed.</p><p>
-Dagster sensors and schedules can be added to trigger jobs based on external events or time intervals, making it a powerful tool for data orchestration.</p><p>
-When pipelines goes down, sensors should be able to detect the failure and trigger alerts or retries. This can be done using Dagster's built-in alerting mechanisms without the need of using external tools like Grafana.</p><p>
-Dagster can also monitor databases, data lakes, and other data sources to ensure data quality and integrity. This is crucial for maintaining the reliability of your data pipelines.</p><pre><code>Author: [Protim Roy](https://www.protimroy.com) with help from some LLM
-
-Date: 2025-04-08
-
-Tags: dagster, python, data engineering, data orchestration, ubuntu, systemd, tailscale
+This setup is a great starting point for building and deploying your data pipelines. You can now extend this to include more complex workflows, integrate with other data sources, and scale as needed.<br>Dagster sensors and schedules can be added to trigger jobs based on external events or time intervals, making it a powerful tool for data orchestration.<br>When pipelines goes down, sensors should be able to detect the failure and trigger alerts or retries. This can be done using Dagster's built-in alerting mechanisms without the need of using external tools like Grafana.<br>Dagster can also monitor databases, data lakes, and other data sources to ensure data quality and integrity. This is crucial for maintaining the reliability of your data pipelines.</p><p>
+Author: <a href="https://www.protimroy.com">Protim Roy</a> with help from some LLM <br>Date: 2025-04-08</p><pre><code>Tags: dagster, python, data engineering, data orchestration, ubuntu, systemd, tailscale
 </code></pre>
         </section>
       </div>
