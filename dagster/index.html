@@ -94,9 +94,51 @@ cd Python-3.12.9
 make -j$(nproc)
 sudo make altinstall
 </code></pre><h6>
-2️⃣ Create a Virtual Environment</h6>
+Create a Virtual Environment</h6>
 <pre><code>python3.12 -m venv ~/venv312
 source ~/venv312/bin/activate
+mkdir ~/Documents/dagster_workspace
+</code></pre><h6>
+Install Dagster and Example Project</h6>
+<pre><code>pip install dagster dagster-webserver dagster-daemon
+
+dagster project from-example --example getting_started_etl_tutorial --name example_etl
+
+pip install -e ~/Documents/dagster_workspace/example_etl
+</code></pre><h6>
+Set Up DAGSTER_HOME</h6>
+<pre><code>mkdir -p ~/.dagster
+vim ~/.dagster/dagster.yaml
+</code></pre><pre><code>local_artifact_storage:
+  module: dagster._core.storage.root
+  class: LocalArtifactStorage
+  config:
+    base_dir: /home/protim/.dagster
+
+run_storage:
+  module: dagster._core.storage.runs
+  class: SqliteRunStorage
+  config:
+    base_dir: /home/protim/.dagster
+
+event_log_storage:
+  module: dagster._core.storage.event_log
+  class: SqliteEventLogStorage
+  config:
+    base_dir: /home/protim/.dagster
+
+schedule_storage:
+  module: dagster._core.storage.schedules
+  class: SqliteScheduleStorage
+  config:
+    base_dir: /home/protim/.dagster
+
+run_launcher:
+  module: dagster._core.launcher.default_run_launcher
+  class: DefaultRunLauncher
+</code></pre><p>
+Then add this to your ~/.bashrc:</p><pre><code>export DAGSTER_HOME=/home/protim/.dagster
+source ~/.bashrc
 </code></pre>
         </section>
       </div>
