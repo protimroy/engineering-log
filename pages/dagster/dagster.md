@@ -6,7 +6,7 @@ allow_html: true
 template: page.html
 ---
 
-![Dagster](images/dagster.jpg)
+
 
 ###### In this guide, I’ll walk you through how I deployed [Dagster](https://dagster.io/), a powerful data orchestration platform, on an Ubuntu server using:
 
