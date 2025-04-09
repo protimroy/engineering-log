@@ -172,7 +172,7 @@ load_from:
       location_name: quickstart_etl
 ```
 
-Modify the __init__.py file
+Modify the ```__init__.py``` file
 
 ```bash
 sudo vim ~/Documents/dagster_workspace/example_etl/__init__.py
@@ -202,18 +202,15 @@ You've now deployed Dagster with:
  - Secure remote access via Tailscale
  - A functioning example ETL pipeline with schedules and assets
 
-This setup is a great starting point for building and deploying your data pipelines. You can now extend this to include more complex workflows, integrate with other data sources, and scale as needed.
-
-Dagster sensors and schedules can be added to trigger jobs based on external events or time intervals, making it a powerful tool for data orchestration.
-
-When pipelines goes down, sensors should be able to detect the failure and trigger alerts or retries. This can be done using Dagster's built-in alerting mechanisms without the need of using external tools like Grafana.
-
+This setup is a great starting point for building and deploying your data pipelines. You can now extend this to include more complex workflows, integrate with other data sources, and scale as needed.\
+Dagster sensors and schedules can be added to trigger jobs based on external events or time intervals, making it a powerful tool for data orchestration.\
+When pipelines goes down, sensors should be able to detect the failure and trigger alerts or retries. This can be done using Dagster's built-in alerting mechanisms without the need of using external tools like Grafana.\
 Dagster can also monitor databases, data lakes, and other data sources to ensure data quality and integrity. This is crucial for maintaining the reliability of your data pipelines.
 
-```
-Author: [Protim Roy](https://www.protimroy.com) with help from some LLM
 
+Author: [Protim Roy](https://www.protimroy.com) with help from some LLM \
 Date: 2025-04-08
 
+```
 Tags: dagster, python, data engineering, data orchestration, ubuntu, systemd, tailscale
 ```
