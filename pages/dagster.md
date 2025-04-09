@@ -6,7 +6,7 @@ allow_html: true
 template: page.html
 ---
 
-In this guide, I’ll walk you through how I deployed [Dagster](https://dagster.io/), a powerful data orchestration platform, on an Ubuntu server using:
+##### In this guide, I’ll walk you through how I deployed [Dagster](https://dagster.io/), a powerful data orchestration platform, on an Ubuntu server using:
 
 - Python 3.12.9 (via source build)
 - Virtual environments
@@ -14,3 +14,9 @@ In this guide, I’ll walk you through how I deployed [Dagster](https://dagster.
 - Tailscale for secure remote access
 
 By the end, you'll have a production-ready Dagster instance that you can access from anywhere securely.
+
+##### Prerequisites
+
+- Ubuntu 22.04+ (I used 24.04)
+- [Tailscale](https://tailscale.com) account (for secure remote access)
+- Basic familiarity with Linux, systemd, and Python virtual environments
