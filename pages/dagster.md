@@ -161,9 +161,11 @@ sudo systemctl start dagster-webserver dagster-daemon
 ```
 
 ###### Create your Dagster workspace
+First, open a workspace yaml file.
 ```bash
 sudo vim ~/Documents/dagster_workspace/workspace.yaml
 ```
+Then setup the yaml file for Dagster to load the project from relative path.
 ```yaml
 load_from:
   - python_package:
