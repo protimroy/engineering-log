@@ -64,8 +64,8 @@
         
         <p class="subtitle" style="font-size:95%;" >Deploying Dagster on Ubuntu with Python 3.12.9, Systemd, and Tailscale</p>
         <section class="content" style="font-size:75%;" >
-          <h5>
-In this guide, I’ll walk you through how I deployed <a href="https://dagster.io/">Dagster</a>, a powerful data orchestration platform, on an Ubuntu server using:</h5>
+          <h6>
+In this guide, I’ll walk you through how I deployed <a href="https://dagster.io/">Dagster</a>, a powerful data orchestration platform, on an Ubuntu server using:</h6>
 <ul>
 <li>
 Python 3.12.9 (via source build)</li><li>
@@ -73,14 +73,27 @@ Virtual environments</li><li>
 systemd for managing services</li><li>
 Tailscale for secure remote access</li></ul>
 <p>
-By the end, you'll have a production-ready Dagster instance that you can access from anywhere securely.</p><h5>
-Prerequisites</h5>
+By the end, you'll have a production-ready Dagster instance that you can access from anywhere securely.</p><h6>
+Prerequisites</h6>
 <ul>
 <li>
 Ubuntu 22.04+ (I used 24.04)</li><li>
 <a href="https://tailscale.com">Tailscale</a> account (for secure remote access)</li><li>
 Basic familiarity with Linux, systemd, and Python virtual environments</li></ul>
+<h6>
+Install Python 3.12.9 from Source</h6>
+<pre><code>sudo apt update
+sudo apt install -y build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev \
+  libssl-dev libreadline-dev libffi-dev libsqlite3-dev wget curl libbz2-dev
 
+cd /tmp
+wget https://www.python.org/ftp/python/3.12.9/Python-3.12.9.tgz
+tar -xf Python-3.12.9.tgz
+cd Python-3.12.9
+./configure --enable-optimizations
+make -j$(nproc)
+sudo make altinstall
+</code></pre>
         </section>
       </div>
     </section>
