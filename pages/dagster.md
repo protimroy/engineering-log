@@ -35,3 +35,9 @@ cd Python-3.12.9
 ./configure --enable-optimizations
 make -j$(nproc)
 sudo make altinstall
+```
+
+###### 2️⃣ Create a Virtual Environment
+```bash
+python3.12 -m venv ~/venv312
+source ~/venv312/bin/activate
