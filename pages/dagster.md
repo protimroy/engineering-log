@@ -1,5 +1,5 @@
 ---
-slug: /dagster
+slug: dagster
 title: Dagster
 description: Deploying Dagster on Ubuntu with Python 3.12.9, Systemd, and Tailscale
 allow_html: true
