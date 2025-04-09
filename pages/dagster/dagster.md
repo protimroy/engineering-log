@@ -1,10 +1,12 @@
 ---
-slug: /dagster
+slug: /dagster/dagster
 title: Dagster
 description: Deploying Dagster on Ubuntu with Python 3.12.9, Systemd, and Tailscale
 allow_html: true
 template: page.html
 ---
+
+![Dagster](images/dagster.jpg)
 
 ###### In this guide, I’ll walk you through how I deployed [Dagster](https://dagster.io/), a powerful data orchestration platform, on an Ubuntu server using:
 
@@ -62,25 +64,25 @@ local_artifact_storage:
   module: dagster._core.storage.root
   class: LocalArtifactStorage
   config:
-    base_dir: /home/protim/.dagster
+    base_dir: /home/user/.dagster
 
 run_storage:
   module: dagster._core.storage.runs
   class: SqliteRunStorage
   config:
-    base_dir: /home/protim/.dagster
+    base_dir: /home/user/.dagster
 
 event_log_storage:
   module: dagster._core.storage.event_log
   class: SqliteEventLogStorage
   config:
-    base_dir: /home/protim/.dagster
+    base_dir: /home/user/.dagster
 
 schedule_storage:
   module: dagster._core.storage.schedules
   class: SqliteScheduleStorage
   config:
-    base_dir: /home/protim/.dagster
+    base_dir: /home/user/.dagster
 
 run_launcher:
   module: dagster._core.launcher.default_run_launcher
@@ -90,7 +92,7 @@ run_launcher:
 Then add this to your ```~/.bashrc```:
 
 ```bash
-export DAGSTER_HOME=/home/protim/.dagster
+export DAGSTER_HOME=/home/user/.dagster
 source ~/.bashrc
 ```
 
@@ -106,14 +108,14 @@ After=network.target
 
 [Service]
 Type=simple
-User=protim
-WorkingDirectory=/home/protim/Documents/dagster_workspace
-ExecStart=/home/protim/venv312/bin/dagster-webserver
+User=user
+WorkingDirectory=/home/user/Documents/dagster_workspace
+ExecStart=/home/user/venv312/bin/dagster-webserver
 Restart=always
 RestartSec=10
-Environment=PATH=/home/protim/venv312/bin:/usr/bin:/bin
+Environment=PATH=/home/user/venv312/bin:/usr/bin:/bin
 Environment=PYTHONUNBUFFERED=1
-Environment=DAGSTER_HOME=/home/protim/.dagster
+Environment=DAGSTER_HOME=/home/user/.dagster
 
 [Install]
 WantedBy=multi-user.target
@@ -130,13 +132,13 @@ After=network.target
 
 [Service]
 Type=simple
-User=protim
-WorkingDirectory=/home/protim/Documents/dagster_workspace
-ExecStart=/home/protim/venv312/bin/dagster-daemon run
+User=user
+WorkingDirectory=/home/user/Documents/dagster_workspace
+ExecStart=/home/user/venv312/bin/dagster-daemon run
 Restart=always
 RestartSec=10
 EnvironmentFile=/etc/dagster-daemon.env
-Environment=PATH=/home/protim/venv312/bin:/usr/bin:/bin
+Environment=PATH=/home/user/venv312/bin:/usr/bin:/bin
 Environment=PYTHONUNBUFFERED=1
 
 [Install]
@@ -147,7 +149,7 @@ WantedBy=multi-user.target
 sudo vim /etc/dagster-daemon.env
 ```
 ```bash
-DAGSTER_HOME=/home/protim/.dagster
+DAGSTER_HOME=/home/user/.dagster
 ```
 Then reload systemd and enable both services:
 
