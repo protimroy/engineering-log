@@ -211,6 +211,8 @@ When pipelines goes down, sensors should be able to detect the failure and trigg
 Dagster can also monitor databases, data lakes, and other data sources to ensure data quality and integrity. This is crucial for maintaining the reliability of your data pipelines.
 
 
-Author: [Protim Roy](https://www.protimroy.com)
+Author: [Protim Roy](https://www.protimroy.com) with help from some LLM
+
 Date: 2025-04-08
+
 Tags: dagster, python, data engineering, data orchestration, ubuntu, systemd, tailscale
