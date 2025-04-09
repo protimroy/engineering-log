@@ -194,8 +194,6 @@ Then open the Dagster UI from your browser:
 http://<tailscale-ip>:3000
 ```
 
-
-
 ###### Conclusion
 
 You've now deployed Dagster with:
@@ -216,6 +214,3 @@ Dagster can also monitor databases, data lakes, and other data sources to ensure
 Author: [Protim Roy](https://www.protimroy.com)
 Date: 2025-04-08
 Tags: dagster, python, data engineering, data orchestration, ubuntu, systemd, tailscale
-
-
-![dagster](https://github.com/protimroy/engineering-log/pages/images/dagster.png)
