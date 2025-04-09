@@ -98,7 +98,7 @@ source ~/.bashrc
 ###### Configure systemd services
 
 ```bash
-sudo vim /etc/systemd/system/dagster-daemon.service
+sudo vim /etc/systemd/system/dagster-webserver.service
 ```
 ```ini
 [Unit]
@@ -109,7 +109,7 @@ After=network.target
 Type=simple
 User=user
 WorkingDirectory=/home/user/Documents/dagster_workspace
-ExecStart=/home/user/venv312/bin/dagster-webserver
+ExecStart=/home/user/venv312/bin/dagster-webserver -h 0.0.0.0 -p 3000
 Restart=always
 RestartSec=10
 Environment=PATH=/home/user/venv312/bin:/usr/bin:/bin
