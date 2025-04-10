@@ -193,11 +193,7 @@ Then setup the yaml file for Dagster to load the project from relative path.</p>
       package_name: quickstart_etl
       working_directory: example_etl
       location_name: quickstart_etl
-</code></pre><p>
-Modify the <code>__init__.py</code> file</p><pre><code>sudo vim ~/Documents/dagster_workspace/example_etl/__init__.py
-</code></pre><pre><code>from .definitions import defs
-</code></pre><p>
-This allows Dagster to find the <code>Definitions</code> object when loading the package.</p><h6>
+</code></pre><h6>
 Enable secure remote access via Tailscale</h6>
 <pre><code>curl -fsSL https://tailscale.com/install.sh | sh
 sudo tailscale up
