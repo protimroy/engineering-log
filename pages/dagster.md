@@ -173,17 +173,6 @@ load_from:
       location_name: quickstart_etl
 ```
 
-Modify the ```__init__.py``` file
-
-```bash
-sudo vim ~/Documents/dagster_workspace/example_etl/__init__.py
-```
-```python
-from .definitions import defs
-```
-This allows Dagster to find the ```Definitions``` object when loading the package.
-
-
 ###### Enable secure remote access via Tailscale
 ```bash
 curl -fsSL https://tailscale.com/install.sh | sh
