@@ -18,6 +18,8 @@ By the end, you'll have a production-ready Dagster instance that you can access 
 
 ###### Pre-requisites
 
+We will need these pre-requisites to get started:
+
 - Ubuntu 22.04+ (I used 24.04)
 - [Tailscale](https://tailscale.com) account (for secure remote access)
 - Basic familiarity with Linux, systemd, and Python virtual environments
@@ -39,6 +41,9 @@ sudo make altinstall
 ```
 
 ###### Create a virtual environment
+
+We create a virtual environment to isolate our Dagster installation from the system Python and create a dagster workspace folder where we can store all our Dagster projects.
+
 ```bash
 python3.12 -m venv ~/venv312
 source ~/venv312/bin/activate
@@ -46,6 +51,8 @@ mkdir ~/Documents/dagster_workspace
 ```
 
 ###### Install Dagster, example project, and dependencies
+
+We will install Dagster and the example ETL project. We will then install all the dependencies for the example project.
 
 ```bash
 pip install dagster dagster-webserver
@@ -194,8 +201,7 @@ You've now deployed Dagster with:
 
 This setup is a great starting point for building and deploying your data pipelines. You can now extend this to include more complex workflows, integrate with other data sources, and scale as needed.\
 Dagster sensors and schedules can be added to trigger jobs based on external events or time intervals, making it a powerful tool for data orchestration.\
-When pipelines goes down, sensors should be able to detect the failure and trigger alerts or retries. This can be done using Dagster's built-in alerting mechanisms without the need of using external tools like Grafana.\
-Dagster can also monitor databases, data lakes, and other data sources to ensure data quality and integrity. This is crucial for maintaining the reliability of your data pipelines.
+When pipelines goes down, sensors should be able to detect the failure and trigger alerts or retries. \
 
 
 Author: [Protim Roy](https://www.protimroy.com) with help from some LLM \
