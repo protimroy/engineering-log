@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html >
+<html>
   <head>
     <title>Dagster</title>
-    <link rel="stylesheet" lang="text/css" href="/bulma.css">
-    <!-- include another bulma.css stylesheet that is for the user to customize -->
-    <link rel="stylesheet" lang="text/css" href="/bulma-custom.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/bulma.css" />
+    <link rel="stylesheet" type="text/css" href="/component.css" />
     <style>a[href^="https://"]::after {
         content: " [*]";
       }
@@ -46,26 +45,19 @@
 
             <span>Dagster</span></span>
         </h1>
-        <div class="field is-grouped is-grouped-multiline">
-<div class="control">
-<div class="tags has-addons">
-<span class="tag is-white">slug</span>
-<span class="tag is-light">/dagster</span>
-</div>
-</div>
-
-<div class="control">
-<div class="tags has-addons">
-<span class="tag is-white">title</span>
-<span class="tag is-light">Dagster</span>
-</div>
-</div>
+        <style>.meta-container { font-size: .7rem; }</style>
+<div class="table-container meta-container">
+<table class="table">
+<thead>
+<tr><th colspan="2">Meta</th></tr>
+</thead>
+<tbody><tr><th>slug</th><td>/dagster</td><tr><th>title</th><td>Dagster</td><tr><th>template</th><td>page.html</td><tr><th>description</th><td>Deploying Dagster on Ubuntu with Python 3.12.9, Systemd, and Tailscale</td></tbody>
+</table>
 </div>
         
         <p class="subtitle" style="font-size:95%;" >Deploying Dagster on Ubuntu with Python 3.12.9, Systemd, and Tailscale</p>
         <section class="content" style="font-size:75%;" >
-          <h6>
-In this guide, I’ll walk you through how I deployed <a href="https://dagster.io/">Dagster</a>, a powerful data orchestration platform, on an Ubuntu server using:</h6>
+          <h6 id="in-this-guide-i-ll-walk-you-through-how-i-deployed-dagster-a-powerful-data-orchestration-platform-on-an-ubuntu-server-using">In this guide, I’ll walk you through how I deployed <a href="https://dagster.io/">Dagster</a>, a powerful data orchestration platform, on an Ubuntu server using:</h6>
 <ul>
 <li>
 Python 3.12.9 (via source build)</li><li>
@@ -73,17 +65,15 @@ Virtual environments</li><li>
 systemd for managing services</li><li>
 Tailscale for secure remote access</li></ul>
 <p>
-By the end, you'll have a production-ready Dagster instance that you can access from anywhere securely.</p><h6>
-Pre-requisites</h6>
+By the end, you'll have a production-ready Dagster instance that you can access from anywhere securely.</p><h6 id="pre-requisites">Pre-requisites</h6>
 <p>
 We will need these pre-requisites to get started:</p><ul>
 <li>
 Ubuntu 22.04+ (I used 24.04)</li><li>
 <a href="https://tailscale.com">Tailscale</a> account (for secure remote access)</li><li>
 Basic familiarity with Linux, systemd, and Python virtual environments</li></ul>
-<h6>
-Install Python 3.12.9 from source</h6>
-<pre><code>sudo apt update
+<h6 id="install-python-3-12-9-from-source">Install Python 3.12.9 from source</h6>
+<pre><code class="language-bash">sudo apt update
 sudo apt install -y build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev \
   libssl-dev libreadline-dev libffi-dev libsqlite3-dev wget curl libbz2-dev
 
@@ -94,23 +84,20 @@ cd Python-3.12.9
 ./configure --enable-optimizations
 make -j$(nproc)
 sudo make altinstall
-</code></pre><h6>
-Create a virtual environment</h6>
+</code></pre><h6 id="create-a-virtual-environment">Create a virtual environment</h6>
 <p>
-We create a virtual environment to isolate our Dagster installation from the system Python and create a dagster workspace folder where we can store all our Dagster projects.</p><pre><code>python3.12 -m venv ~/venv312
+We create a virtual environment to isolate our Dagster installation from the system Python and create a dagster workspace folder where we can store all our Dagster projects.</p><pre><code class="language-bash">python3.12 -m venv ~/venv312
 source ~/venv312/bin/activate
 mkdir ~/Documents/dagster_workspace
-</code></pre><h6>
-Install Dagster, example project, and dependencies</h6>
+</code></pre><h6 id="install-dagster-example-project-and-dependencies">Install Dagster, example project, and dependencies</h6>
 <p>
-We will install Dagster and the example ETL project. We will then install all the dependencies for the example project.</p><pre><code>pip install dagster dagster-webserver
+We will install Dagster and the example ETL project. We will then install all the dependencies for the example project.</p><pre><code class="language-bash">pip install dagster dagster-webserver
 dagster project from-example --example getting_started_etl_tutorial --name example_etl
 pip install -e ~/Documents/dagster_workspace/example_etl
-</code></pre><h6>
-Set Up DAGSTER_HOME</h6>
-<pre><code>mkdir -p ~/.dagster
+</code></pre><h6 id="set-up-dagster-home">Set Up DAGSTER_HOME</h6>
+<pre><code class="language-bash">mkdir -p ~/.dagster
 vim ~/.dagster/dagster.yaml
-</code></pre><pre><code>local_artifact_storage:
+</code></pre><pre><code class="language-yaml">local_artifact_storage:
   module: dagster._core.storage.root
   class: LocalArtifactStorage
   config:
@@ -138,12 +125,11 @@ run_launcher:
   module: dagster._core.launcher.default_run_launcher
   class: DefaultRunLauncher
 </code></pre><p>
-Then add this to your <code>~/.bashrc</code>:</p><pre><code>export DAGSTER_HOME=/home/user/.dagster
+Then add this to your <code>~/.bashrc</code>:</p><pre><code class="language-bash">export DAGSTER_HOME=/home/user/.dagster
 source ~/.bashrc
-</code></pre><h6>
-Configure systemd services</h6>
-<pre><code>sudo vim /etc/systemd/system/dagster-webserver.service
-</code></pre><pre><code>[Unit]
+</code></pre><h6 id="configure-systemd-services">Configure systemd services</h6>
+<pre><code class="language-bash">sudo vim /etc/systemd/system/dagster-webserver.service
+</code></pre><pre><code class="language-ini">[Unit]
 Description=Dagster Webserver
 After=network.target
 
@@ -160,8 +146,8 @@ Environment=DAGSTER_HOME=/home/user/.dagster
 
 [Install]
 WantedBy=multi-user.target
-</code></pre><pre><code>sudo vim /etc/systemd/system/dagster-daemon.service
-</code></pre><pre><code>
+</code></pre><pre><code class="language-bash">sudo vim /etc/systemd/system/dagster-daemon.service
+</code></pre><pre><code class="language-ini">
 [Unit]
 Description=Dagster Daemon
 After=network.target
@@ -179,31 +165,28 @@ Environment=PYTHONUNBUFFERED=1
 
 [Install]
 WantedBy=multi-user.target
-</code></pre><pre><code>sudo vim /etc/dagster-daemon.env
-</code></pre><pre><code>DAGSTER_HOME=/home/user/.dagster
+</code></pre><pre><code class="language-bash">sudo vim /etc/dagster-daemon.env
+</code></pre><pre><code class="language-bash">DAGSTER_HOME=/home/user/.dagster
 </code></pre><p>
-Then reload systemd and enable both services:</p><pre><code>sudo systemctl daemon-reexec
+Then reload systemd and enable both services:</p><pre><code class="language-bash">sudo systemctl daemon-reexec
 sudo systemctl daemon-reload
 sudo systemctl enable dagster-webserver dagster-daemon
 sudo systemctl start dagster-webserver dagster-daemon
-</code></pre><h6>
-Create your Dagster workspace</h6>
+</code></pre><h6 id="create-your-dagster-workspace">Create your Dagster workspace</h6>
 <p>
-First, open a workspace yaml file.</p><pre><code>sudo vim ~/Documents/dagster_workspace/workspace.yaml
+First, open a workspace yaml file.</p><pre><code class="language-bash">sudo vim ~/Documents/dagster_workspace/workspace.yaml
 </code></pre><p>
-Then setup the yaml file for Dagster to load the project from relative path.</p><pre><code>load_from:
+Then setup the yaml file for Dagster to load the project from relative path.</p><pre><code class="language-yaml">load_from:
   - python_package:
       package_name: quickstart_etl
       working_directory: example_etl
       location_name: quickstart_etl
-</code></pre><h6>
-Enable secure remote access via Tailscale</h6>
-<pre><code>curl -fsSL https://tailscale.com/install.sh | sh
+</code></pre><h6 id="enable-secure-remote-access-via-tailscale">Enable secure remote access via Tailscale</h6>
+<pre><code class="language-bash">curl -fsSL https://tailscale.com/install.sh | sh
 sudo tailscale up
 </code></pre><p>
 Then open the Dagster UI from your browser:</p><pre><code>http://&lt;tailscale-ip&gt;:3000
-</code></pre><h6>
-Conclusion</h6>
+</code></pre><h6 id="conclusion">Conclusion</h6>
 <p>
 You've now deployed Dagster with:</p><ul>
 <li>
@@ -218,5 +201,7 @@ Author: <a href="https://www.protimroy.com">Protim Roy</a> with help from some L
         </section>
       </div>
     </section>
+    <script src="/htmx.js"></script>
+    <script src="/component.js"></script>
   </body>
 </html>

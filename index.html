@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html >
+<html>
   <head>
     <title>Engineering-Log</title>
-    <link rel="stylesheet" lang="text/css" href="/bulma.css">
-    <!-- include another bulma.css stylesheet that is for the user to customize -->
-    <link rel="stylesheet" lang="text/css" href="/bulma-custom.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/bulma.css" />
+    <link rel="stylesheet" type="text/css" href="/component.css" />
     <style>a[href^="https://"]::after {
         content: " [*]";
       }
@@ -46,20 +45,14 @@
 
             <span>Engineering-Log</span></span>
         </h1>
-        <div class="field is-grouped is-grouped-multiline">
-<div class="control">
-<div class="tags has-addons">
-<span class="tag is-white">slug</span>
-<span class="tag is-light">/</span>
-</div>
-</div>
-
-<div class="control">
-<div class="tags has-addons">
-<span class="tag is-white">title</span>
-<span class="tag is-light">Engineering-Log</span>
-</div>
-</div>
+        <style>.meta-container { font-size: .7rem; }</style>
+<div class="table-container meta-container">
+<table class="table">
+<thead>
+<tr><th colspan="2">Meta</th></tr>
+</thead>
+<tbody><tr><th>slug</th><td>/</td><tr><th>title</th><td>Engineering-Log</td><tr><th>template</th><td>page.html</td><tr><th>description</th><td>Hi, this is Protim. I am documenting most of my learnings in the fields of engineering, design, and programming/software dev related content, ..etc, here.</td></tbody>
+</table>
 </div>
         
         <p class="subtitle" style="font-size:95%;" >Hi, this is Protim. I am documenting most of my learnings in the fields of engineering, design, and programming/software dev related content, ..etc, here.</p>
@@ -118,10 +111,12 @@
   </tbody>
 </table>
 <p>
-<a href="https://protimroy.com">Protim Roy</a> &copy; 2024<br>
-Made with <a href="https://github.com/sea-grass/goku">Goku</a> &copy; 2024</p>
+<a href="https://protimroy.com">Protim Roy</a> &amp;copy; 2024<br>
+Made with <a href="https://github.com/sea-grass/goku">Goku</a> &amp;copy; 2024</p>
         </section>
       </div>
     </section>
+    <script src="/htmx.js"></script>
+    <script src="/component.js"></script>
   </body>
 </html>
