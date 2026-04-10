@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html >
+<html>
   <head>
     <title>{{title}}</title>
-    <link rel="stylesheet" lang="text/css" href="{{site_root}}/bulma.css">
-    <!-- include another bulma.css stylesheet that is for the user to customize -->
-    <link rel="stylesheet" lang="text/css" href="{{site_root}}/bulma-custom.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{& theme.head}}
+    {{& component.head}}
     <style>a[href^="https://"]::after {
         content: " [*]";
       }
@@ -40,5 +39,7 @@
         </section>
       </div>
     </section>
+    {{& theme.body}}
+    {{& component.body}}
   </body>
 </html>

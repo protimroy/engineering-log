@@ -1,10 +1,11 @@
 .{
-    .name = "new-site-template",
+    .name = .engineering_log,
     .version = "0.0.0",
+    .fingerprint = 0xe68ead792dfe3f2,
     .dependencies = .{
         .goku = .{
-            .url = "git+https://github.com/sea-grass/goku?ref=v0.0.6#cdcdd648fafce874c53c6e3fd6e8d2f9ade9a56e",
-            .hash = "1220c324a0adcb001c12aacf5e68dcdd79aaf3b1cf8cff88039759741cf8c56e4d28",
+            .url = "git+https://github.com/protimroy/goku?ref=v0.0.9-dev#ce38d545b4827ef16a4dcf8e610eb7c71c60a0d8",
+            .hash = "goku-0.0.9-o8SjWFFtBACbg8efKUaLEph2wthUCpcbonvdAWUE8rOY",
         },
     },
     .paths = .{

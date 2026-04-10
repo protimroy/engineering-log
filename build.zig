@@ -5,7 +5,7 @@ pub fn build(b: *std.Build) void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
 
-    const site_path = b.path(".");
+    const site_path = b.path("");
     const out_path = b.path("build");
 
     const goku_dep = b.dependency("goku", .{
@@ -18,7 +18,7 @@ pub fn build(b: *std.Build) void {
     site_step.dependOn(&build_site.step);
 
     const serve_step = b.step("serve", "Serve the built Goku site");
-    const serve_site = Goku.serve(goku_dep, out_path);
+    const serve_site = Goku.preview(goku_dep, site_path, out_path);
     serve_site.step.dependOn(&build_site.step);
     serve_step.dependOn(&serve_site.step);
 }
