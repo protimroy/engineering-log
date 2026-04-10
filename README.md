@@ -2,6 +2,8 @@
 
 engineering-log is a Goku-powered site.
 
+This repo is a consumer of the Goku build-time API rather than a checkout of the Goku source tree.
+
 ## Requirements
 
 - Zig 0.15.0-dev.885+e83776595
@@ -24,6 +26,6 @@ The generated site is written to `build/`.
 
 ## Notes
 
-- This site consumes Goku through `build.zig.zon`.
-- This site is pinned to the current `v0.1.0-dev` Goku line for Zig `0.15.0-dev.885+e83776595`.
-- The template is wired for the `theme` and `component` hooks used by this site.
+- Goku is pinned through `build.zig.zon` to `protimroy/goku` on the `v0.1.0-dev` branch.
+- CI is expected to use the same Zig compiler version as local development: `0.15.0-dev.885+e83776595`.
+- The site template currently uses the `theme` and `component` hooks.
