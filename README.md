@@ -25,5 +25,5 @@ The generated site is written to `build/`.
 ## Notes
 
 - This site consumes Goku through `build.zig.zon`.
-- This site is pinned to the `v0.0.9-dev` Goku line.
-- The template is wired for the `theme` and `component` hooks supported by the `v0.0.9-dev` line.
+- This site is pinned to the current `v0.1.0-dev` Goku line for Zig `0.15.0-dev.885+e83776595`.
+- The template is wired for the `theme` and `component` hooks used by this site.
