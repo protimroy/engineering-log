@@ -4,8 +4,8 @@
     .fingerprint = 0xe68ead792dfe3f2,
     .dependencies = .{
         .goku = .{
-            .url = "git+https://github.com/protimroy/goku?ref=v0.1.0-dev#f1f5333109f74dd06a31f35fc9f0f0783c48ac2a",
-            .hash = "goku-0.0.9-o8SjWC84BgBf7EAajhwXi0jUcoD5qHF8RHCFxsFSkRKb",
+            .url = "git+https://github.com/protimroy/goku?ref=f1f5333109f74dd06a31f35fc9f0f0783c48ac2a",
+            .hash = "goku-0.0.9-o8SjWFFtBACbg8efKUaLEph2wthUCpcbonvdAWUE8rOY",
         },
     },
     .paths = .{
