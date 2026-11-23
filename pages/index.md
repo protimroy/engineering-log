@@ -61,5 +61,4 @@ template: page.html
   </tbody>
 </table>
 
-<a href="https://protimroy.com">Protim Roy</a> &copy; 2024<br>
-Made with <a href="https://github.com/sea-grass/goku">Goku</a> &copy; 2024
+<footer class="site-footer"><a href="https://www.protimroy.com/">Protim Roy</a> © 2026 · Built with <a href="https://github.com/sea-grass/goku">Goku</a></footer>
